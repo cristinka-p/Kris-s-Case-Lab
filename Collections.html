@@ -1,68 +1,37 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Сборники — Kris’s case lab</title>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Подборки - Kris’s case lab</title>
 <link rel="stylesheet" href="styles.css">
 <script src="menu.js" defer></script>
-<script src="main.js" defer></script>
 </head>
 <body>
-<header class="site-header">
-  <div class="header-inner">
-    <div class="logo">Kris’s case lab</div>
-    <nav id="mainNav" class="main-nav">
-      <a href="index.html">Главная</a>
-      <a href="cases.html">Кейсы</a>
-      <a href="projects.html">Проекты</a>
-      <a href="collections.html">Сборники</a>
-    </nav>
-    <div class="nav-controls">
-      <button id="themeToggle" class="theme-btn">🌓</button>
-      <button class="burger" onclick="toggleMenu()">☰</button>
-    </div>
-  </div>
+<header>
+  <div class="logo">Kris’s case lab</div>
+  <nav id="main-nav">
+    <ul>
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="cases.html">Кейсы</a></li>
+      <li><a href="projects.html">Проекты</a></li>
+      <li><a href="about.html">О нас</a></li>
+      <li class="toggle-menu">☰</li>
+    </ul>
+  </nav>
 </header>
 
-<main style="max-width:1100px;margin:30px auto;padding:0 18px;">
-  <h1>Сборники</h1>
-
-  <div id="collectionsList" style="display:flex;flex-direction:column;gap:12px;"></div>
+<main>
+  <h1>Подборки</h1>
+  <div class="collection-grid">
+    <button>Обработка сеток в Geomagic Design X</button>
+    <button>Нейросети для генерации 3D</button>
+    <button>Скульптинг в Blender</button>
+  </div>
 </main>
 
-<footer class="site-footer"><div class="footer-inner"><div>© 2025 Kris’s case lab</div></div></footer>
-
-<script>
-const collections = [
-  {id:'col-1', title:'Обработка сеток в Geomagic', img:'assets/img/col-geomagic.jpg', excerpt:'Коротко о том, как быстро почистить сетку'},
-  {id:'col-2', title:'Нейросети для 3D', img:'assets/img/col-3dai.jpg', excerpt:'Генерация 3D-форм и оптимизация'},
-  {id:'col-3', title:'Скульптинг в Blender', img:'assets/img/col-blender.jpg', excerpt:'Быстрые приёмы скульптинга'}
-];
-
-const list = document.getElementById('collectionsList');
-collections.forEach(c=>{
-  const card = document.createElement('div');
-  card.className='card';
-  card.innerHTML = `<div style="display:flex;gap:12px;align-items:center">
-    <img src="${c.img}" style="width:120px;height:80px;object-fit:cover;border-radius:8px">
-    <div style="flex:1">
-      <h3>${c.title}</h3>
-      <p style="margin:0">${c.excerpt}</p>
-      <div style="margin-top:8px"><button onclick="openCollection('${c.id}')">Подробнее</button></div>
-    </div>
-  </div>
-  <div id="${c.id}" style="display:none;margin-top:12px"></div>`;
-  list.appendChild(card);
-});
-
-function openCollection(id){
-  const el = document.getElementById(id);
-  if(el.style.display==='block'){ el.style.display='none'; return; }
-  el.style.display='block';
-  if(!el.innerHTML){
-    // здесь можно загрузить подробности (или перейти на отдельную страницу)
-    el.innerHTML = `<p>Подробная инструкция, примеры, ссылки на кейсы, загрузки.</p>`;
-  }
-}
-</script>
+<footer>
+  <p>© 2025 Kris’s case lab</p>
+</footer>
 </body>
 </html>
