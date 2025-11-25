@@ -1,17 +1,76 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>Мой сайт</title>
-<link rel="stylesheet" href="assets/css/style.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Kris’s case lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="assets/js/script.js" defer></script>
+<script src="menu.js" defer></script>
+<script src="main.js" defer></script>
 </head>
 <body>
-<header><h1>Мой сайт</h1></header>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">Kris’s case lab</div>
+
+    <nav id="mainNav" class="main-nav">
+      <a href="index.html">Главная</a>
+      <a href="cases.html">Кейсы</a>
+      <a href="projects.html">Проекты</a>
+      <a href="collections.html">Сборники</a>
+      <a href="viewer.html">3D Viewer</a>
+      <a href="about.html">О нас</a>
+    </nav>
+
+    <div class="nav-controls">
+      <button id="themeToggle" class="theme-btn" aria-label="Переключить тему">🌓</button>
+      <button id="burger" class="burger" aria-label="Меню" onclick="toggleMenu()">☰</button>
+    </div>
+  </div>
+</header>
+
 <main>
-  <div class="card"><a href="posts.html">Статьи</a></div>
-  <div class="card"><a href="projects.html">Проекты</a></div>
+  <section class="hero">
+    <h1>Kris’s case lab</h1>
+    <p class="subtitle" aria-hidden="true"></p> <!-- убрали текст, как просили -->
+  </section>
+
+  <section class="grid">
+    <a class="card" href="cases.html">
+      <h2>Кейсы</h2>
+      <p>Детальные инструкции по проектам и приёмы.</p>
+    </a>
+
+    <a class="card" href="projects.html">
+      <h2>Проекты</h2>
+      <p>Примеры работ и портфолио — горизонтальная лента сверху.</p>
+    </a>
+
+    <a class="card" href="collections.html">
+      <h2>Сборники</h2>
+      <p>Подборки лайфхаков, ИИ-решений и мини-инструкций.</p>
+    </a>
+
+    <a class="card" href="viewer.html">
+      <h2>3D Viewer</h2>
+      <p>Загружай STL / GLB, измеряй, масштабируй, экспортируй.</p>
+    </a>
+  </section>
 </main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>© 2025 Kris’s case lab</div>
+    <div class="socials">
+      <a href="mailto:you@example.com">Email</a> •
+      <a href="https://t.me/yourhandle" target="_blank">Telegram</a> •
+      <a href="https://github.com/your" target="_blank">GitHub</a>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
