@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Кейсы — Kris’s case lab</title>
+<title>Кейс — Kris’s case lab</title>
 <link rel="stylesheet" href="styles.css">
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="menu.js" defer></script>
@@ -17,7 +17,6 @@
       <a href="cases.html">Кейсы</a>
       <a href="projects.html">Проекты</a>
       <a href="collections.html">Сборники</a>
-      <a href="viewer.html">3D Viewer</a>
     </nav>
     <div class="nav-controls">
       <button id="themeToggle" class="theme-btn">🌓</button>
@@ -26,26 +25,64 @@
   </div>
 </header>
 
-<main>
-  <section class="grid" id="casesGrid"></section>
+<main style="max-width:1100px;margin:40px auto;padding:0 18px;">
+  <div id="hero" class="card" style="position:relative;">
+    <!-- hero content will be injected -->
+  </div>
+
+  <div id="sections" style="margin-top:24px; display:flex; flex-direction:column; gap:18px;">
+    <!-- instruction steps injected -->
+  </div>
+
+  <div style="margin-top:28px;">
+    <h3>Результаты и обратная связь</h3>
+    <div id="results" class="card"></div>
+  </div>
 </main>
 
 <footer class="site-footer"><div class="footer-inner"><div>© 2025 Kris’s case lab</div></div></footer>
 
 <script>
-const casesList = [
-  {file:'example.md', title:'Пример кейса', img:'assets/img/case-example.jpg'},
-  // Добавляй свои: {file:'my-case.md', title:'Название', img:'assets/img/...' }
-];
+(async ()=>{
+  const params = new URLSearchParams(location.search);
+  const file = params.get('file') || 'example.md';
+  const md = await loadMD('content/cases/'+file);
 
-const grid = document.getElementById('casesGrid');
-casesList.forEach(c=>{
-  const a=document.createElement('a');
-  a.className='card';
-  a.href='case.html?file='+encodeURIComponent(c.file);
-  a.innerHTML = `<h3>${c.title}</h3><p><img src="${c.img}" alt="${c.title}" style="width:100%;border-radius:12px;margin-top:10px"></p>`;
-  grid.appendChild(a);
-});
+  // Простейшая разметка: ожидаем, что в markdown используются заголовки H2 для разделов инструкции.
+  // Мы выведем hero — до первого H2, затем каждую секцию H2+ контент в отдельной карточке.
+  // Разделение выполняем по маркдаунам: находим индекс первого "## "
+  const raw = await fetch('content/cases/'+file).then(r=>r.text());
+  const idx = raw.search(/^##\s/m);
+  const heroMd = idx===-1? raw : raw.slice(0, idx);
+  const rest = idx===-1? '' : raw.slice(idx);
+
+  document.getElementById('hero').innerHTML = marked.parse(heroMd);
+
+  if(rest){
+    // разбиваем по H2
+    const sections = rest.split(/\n(?=##\s)/);
+    const container = document.getElementById('sections');
+    sections.forEach((s, i)=>{
+      const el = document.createElement('div');
+      el.className='card';
+      el.innerHTML = marked.parse(s);
+      // add arrow to next
+      if(i < sections.length-1){
+        const arrow = document.createElement('button');
+        arrow.textContent = 'Дальше →';
+        arrow.style.cssText='position:absolute;right:12px;bottom:12px;';
+        arrow.onclick = ()=> {
+          const next = container.children[i+1];
+          next.scrollIntoView({behavior:'smooth', block:'center'});
+        };
+        // wrap to position arrow inside
+        el.style.position='relative';
+        el.appendChild(arrow);
+      }
+      container.appendChild(el);
+    });
+  }
+})();
 </script>
 </body>
 </html>
