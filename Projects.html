@@ -1,17 +1,38 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-<meta charset="UTF-8">
-<title>Мой сайт</title>
-<link rel="stylesheet" href="assets/css/style.css">
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="assets/js/script.js" defer></script>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Проекты — Kris’s case lab</title>
+<link rel="stylesheet" href="styles.css">
+<script src="menu.js" defer></script>
+<script src="projects.js" defer></script>
 </head>
 <body>
-<header><h1>Мой сайт</h1></header>
-<main>
-  <div class="card"><a href="posts.html">Статьи</a></div>
-  <div class="card"><a href="projects.html">Проекты</a></div>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">Kris’s case lab</div>
+    <nav id="mainNav" class="main-nav">
+      <a href="index.html">Главная</a><a href="cases.html">Кейсы</a><a href="projects.html">Проекты</a>
+    </nav>
+    <div class="nav-controls">
+      <button id="themeToggle" class="theme-btn">🌓</button>
+      <button class="burger" onclick="toggleMenu()">☰</button>
+    </div>
+  </div>
+</header>
+
+<main style="max-width:1100px;margin:30px auto;padding:0 18px;">
+  <h1>Проекты</h1>
+
+  <!-- Горизонтальная лента -->
+  <div id="carousel" style="display:flex; gap:12px; overflow:auto; padding:12px 0; margin-bottom:20px;">
+    <!-- images filled by projects.js -->
+  </div>
+
+  <!-- Сетка проектов -->
+  <div id="projectsGrid" class="grid"></div>
 </main>
+
+<footer class="site-footer"><div class="footer-inner"><div>© 2025 Kris’s case lab</div></div></footer>
+
 </body>
 </html>
