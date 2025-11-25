@@ -1,88 +1,51 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Кейс — Kris’s case lab</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кейс - Kris’s case lab</title>
 <link rel="stylesheet" href="styles.css">
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="menu.js" defer></script>
-<script src="main.js" defer></script>
 </head>
 <body>
-<header class="site-header">
-  <div class="header-inner">
-    <div class="logo">Kris’s case lab</div>
-    <nav id="mainNav" class="main-nav">
-      <a href="index.html">Главная</a>
-      <a href="cases.html">Кейсы</a>
-      <a href="projects.html">Проекты</a>
-      <a href="collections.html">Сборники</a>
-    </nav>
-    <div class="nav-controls">
-      <button id="themeToggle" class="theme-btn">🌓</button>
-      <button class="burger" onclick="toggleMenu()">☰</button>
-    </div>
-  </div>
+<header>
+  <div class="logo">Kris’s case lab</div>
+  <nav id="main-nav">
+    <ul>
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="cases.html">Кейсы</a></li>
+      <li><a href="projects.html">Проекты</a></li>
+      <li><a href="collections.html">Подборки</a></li>
+      <li><a href="about.html">О нас</a></li>
+      <li class="toggle-menu">☰</li>
+    </ul>
+  </nav>
 </header>
 
-<main style="max-width:1100px;margin:40px auto;padding:0 18px;">
-  <div id="hero" class="card" style="position:relative;">
-    <!-- hero content will be injected -->
-  </div>
+<main>
+  <h1>Название кейса</h1>
 
-  <div id="sections" style="margin-top:24px; display:flex; flex-direction:column; gap:18px;">
-    <!-- instruction steps injected -->
-  </div>
+  <section class="case-description">
+    <p>Описание кейса с картинками и вводной информацией</p>
+    <div class="next-step">→</div>
+  </section>
 
-  <div style="margin-top:28px;">
-    <h3>Результаты и обратная связь</h3>
-    <div id="results" class="card"></div>
-  </div>
+  <section class="instructions">
+    <h2>Общая инструкция</h2>
+    <div class="instruction-step">
+      <button>Подсказка 1</button>
+      <div class="instruction-content">Инструкция или подборка</div>
+    </div>
+  </section>
+
+  <section class="results">
+    <h2>Результат</h2>
+    <p>Примеры и обратная связь</p>
+  </section>
 </main>
 
-<footer class="site-footer"><div class="footer-inner"><div>© 2025 Kris’s case lab</div></div></footer>
-
-<script>
-(async ()=>{
-  const params = new URLSearchParams(location.search);
-  const file = params.get('file') || 'example.md';
-  const md = await loadMD('content/cases/'+file);
-
-  // Простейшая разметка: ожидаем, что в markdown используются заголовки H2 для разделов инструкции.
-  // Мы выведем hero — до первого H2, затем каждую секцию H2+ контент в отдельной карточке.
-  // Разделение выполняем по маркдаунам: находим индекс первого "## "
-  const raw = await fetch('content/cases/'+file).then(r=>r.text());
-  const idx = raw.search(/^##\s/m);
-  const heroMd = idx===-1? raw : raw.slice(0, idx);
-  const rest = idx===-1? '' : raw.slice(idx);
-
-  document.getElementById('hero').innerHTML = marked.parse(heroMd);
-
-  if(rest){
-    // разбиваем по H2
-    const sections = rest.split(/\n(?=##\s)/);
-    const container = document.getElementById('sections');
-    sections.forEach((s, i)=>{
-      const el = document.createElement('div');
-      el.className='card';
-      el.innerHTML = marked.parse(s);
-      // add arrow to next
-      if(i < sections.length-1){
-        const arrow = document.createElement('button');
-        arrow.textContent = 'Дальше →';
-        arrow.style.cssText='position:absolute;right:12px;bottom:12px;';
-        arrow.onclick = ()=> {
-          const next = container.children[i+1];
-          next.scrollIntoView({behavior:'smooth', block:'center'});
-        };
-        // wrap to position arrow inside
-        el.style.position='relative';
-        el.appendChild(arrow);
-      }
-      container.appendChild(el);
-    });
-  }
-})();
-</script>
+<footer>
+  <p>© 2025 Kris’s case lab</p>
+</footer>
 </body>
 </html>
