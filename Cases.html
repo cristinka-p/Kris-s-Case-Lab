@@ -2,16 +2,41 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Мой сайт</title>
-<link rel="stylesheet" href="assets/css/style.css">
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="assets/js/script.js" defer></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кейсы - Kris’s case lab</title>
+<link rel="stylesheet" href="styles.css">
+<script src="menu.js" defer></script>
 </head>
 <body>
-<header><h1>Мой сайт</h1></header>
+<header>
+  <div class="logo">Kris’s case lab</div>
+  <nav id="main-nav">
+    <ul>
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="projects.html">Проекты</a></li>
+      <li><a href="collections.html">Подборки</a></li>
+      <li><a href="about.html">О нас</a></li>
+      <li class="toggle-menu">☰</li>
+    </ul>
+  </nav>
+</header>
+
 <main>
-  <div class="card"><a href="posts.html">Статьи</a></div>
-  <div class="card"><a href="projects.html">Проекты</a></div>
+  <h1>Кейсы</h1>
+  <div class="cases-grid">
+    <a href="case.html" class="case-item">
+      <img src="assets/img/case1.png" alt="Кейс 1">
+      <h2>Название кейса 1</h2>
+    </a>
+    <a href="case.html" class="case-item">
+      <img src="assets/img/case2.png" alt="Кейс 2">
+      <h2>Название кейса 2</h2>
+    </a>
+  </div>
 </main>
+
+<footer>
+  <p>© 2025 Kris’s case lab</p>
+</footer>
 </body>
 </html>
