@@ -1,17 +1,72 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>Мой сайт</title>
-<link rel="stylesheet" href="assets/css/style.css">
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="assets/js/script.js" defer></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3D Viewer — Kris’s case lab</title>
+<link rel="stylesheet" href="styles.css">
+<script src="menu.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.150.1/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.150.1/examples/js/loaders/STLLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.150.1/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.150.1/examples/js/exporters/STLExporter.js"></script>
+<script src="viewer.js" defer></script>
 </head>
 <body>
-<header><h1>Мой сайт</h1></header>
-<main>
-  <div class="card"><a href="posts.html">Статьи</a></div>
-  <div class="card"><a href="projects.html">Проекты</a></div>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">Kris’s case lab</div>
+    <nav id="mainNav" class="main-nav">
+      <a href="index.html">Главная</a>
+      <a href="cases.html">Кейсы</a>
+      <a href="projects.html">Проекты</a>
+      <a href="collections.html">Сборники</a>
+    </nav>
+    <div class="nav-controls">
+      <button id="themeToggle" class="theme-btn">🌓</button>
+      <button class="burger" onclick="toggleMenu()">☰</button>
+    </div>
+  </div>
+</header>
+
+<main style="max-width:1200px;margin:30px auto;padding:0 18px;">
+  <h1>3D Viewer</h1>
+
+  <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start;">
+    <div style="flex:1; min-width:320px">
+      <label>Загрузить файл (.stl, .glb)</label><br>
+      <input id="fileInput" type="file" accept=".stl,.glb,.gltf">
+      <div style="margin-top:12px">
+        <button id="fitBtn">Уместить</button>
+        <button id="measureBtn">Показать габариты</button>
+        <button id="exportBtn">Экспортировать STL</button>
+      </div>
+
+      <div style="margin-top:12px">
+        <label>Цвет</label>
+        <input type="color" id="colorPicker" value="#b898ff">
+        <label style="margin-left:10px">Освещение</label>
+        <select id="lightSel">
+          <option value="neutral">Нейтральное</option>
+          <option value="cool">Холодное</option>
+          <option value="warm">Тёплое</option>
+        </select>
+      </div>
+
+      <div style="margin-top:12px">
+        <label>Масштаб (коэффициент)</label>
+        <input id="scaleInput" type="range" min="0.1" max="5" step="0.01" value="1" />
+        <span id="scaleVal">1.00</span>
+      </div>
+    </div>
+
+    <div style="flex:2; min-width:320px">
+      <div id="viewer" style="width:100%; height:560px; background:#eef2ff; border-radius:12px; overflow:hidden"></div>
+      <div id="bboxInfo" style="margin-top:8px; color:rgba(0,0,0,0.6)"></div>
+    </div>
+  </div>
 </main>
+
+<footer class="site-footer"><div class="footer-inner"><div>© 2025 Kris’s case lab</div></div></footer>
 </body>
 </html>
