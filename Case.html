@@ -1,17 +1,51 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>Мой сайт</title>
-<link rel="stylesheet" href="assets/css/style.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Кейсы — Kris’s case lab</title>
+<link rel="stylesheet" href="styles.css">
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="assets/js/script.js" defer></script>
+<script src="menu.js" defer></script>
+<script src="main.js" defer></script>
 </head>
 <body>
-<header><h1>Мой сайт</h1></header>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">Kris’s case lab</div>
+    <nav id="mainNav" class="main-nav">
+      <a href="index.html">Главная</a>
+      <a href="cases.html">Кейсы</a>
+      <a href="projects.html">Проекты</a>
+      <a href="collections.html">Сборники</a>
+      <a href="viewer.html">3D Viewer</a>
+    </nav>
+    <div class="nav-controls">
+      <button id="themeToggle" class="theme-btn">🌓</button>
+      <button class="burger" onclick="toggleMenu()">☰</button>
+    </div>
+  </div>
+</header>
+
 <main>
-  <div class="card"><a href="posts.html">Статьи</a></div>
-  <div class="card"><a href="projects.html">Проекты</a></div>
+  <section class="grid" id="casesGrid"></section>
 </main>
+
+<footer class="site-footer"><div class="footer-inner"><div>© 2025 Kris’s case lab</div></div></footer>
+
+<script>
+const casesList = [
+  {file:'example.md', title:'Пример кейса', img:'assets/img/case-example.jpg'},
+  // Добавляй свои: {file:'my-case.md', title:'Название', img:'assets/img/...' }
+];
+
+const grid = document.getElementById('casesGrid');
+casesList.forEach(c=>{
+  const a=document.createElement('a');
+  a.className='card';
+  a.href='case.html?file='+encodeURIComponent(c.file);
+  a.innerHTML = `<h3>${c.title}</h3><p><img src="${c.img}" alt="${c.title}" style="width:100%;border-radius:12px;margin-top:10px"></p>`;
+  grid.appendChild(a);
+});
+</script>
 </body>
 </html>
