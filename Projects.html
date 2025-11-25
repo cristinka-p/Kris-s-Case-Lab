@@ -1,38 +1,43 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Проекты — Kris’s case lab</title>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Проекты - Kris’s case lab</title>
 <link rel="stylesheet" href="styles.css">
 <script src="menu.js" defer></script>
-<script src="projects.js" defer></script>
 </head>
 <body>
-<header class="site-header">
-  <div class="header-inner">
-    <div class="logo">Kris’s case lab</div>
-    <nav id="mainNav" class="main-nav">
-      <a href="index.html">Главная</a><a href="cases.html">Кейсы</a><a href="projects.html">Проекты</a>
-    </nav>
-    <div class="nav-controls">
-      <button id="themeToggle" class="theme-btn">🌓</button>
-      <button class="burger" onclick="toggleMenu()">☰</button>
-    </div>
-  </div>
+<header>
+  <div class="logo">Kris’s case lab</div>
+  <nav id="main-nav">
+    <ul>
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="cases.html">Кейсы</a></li>
+      <li><a href="collections.html">Подборки</a></li>
+      <li><a href="about.html">О нас</a></li>
+      <li class="toggle-menu">☰</li>
+    </ul>
+  </nav>
 </header>
 
-<main style="max-width:1100px;margin:30px auto;padding:0 18px;">
+<main>
   <h1>Проекты</h1>
-
-  <!-- Горизонтальная лента -->
-  <div id="carousel" style="display:flex; gap:12px; overflow:auto; padding:12px 0; margin-bottom:20px;">
-    <!-- images filled by projects.js -->
+  <div class="projects-slider">
+    <!-- сюда будут фотки с горизонтальным скроллом -->
   </div>
-
-  <!-- Сетка проектов -->
-  <div id="projectsGrid" class="grid"></div>
+  <div class="projects-grid">
+    <div class="project-item">
+      <img src="assets/img/project1.png" alt="Проект 1">
+      <h2>Название проекта 1</h2>
+      <p>Подробная информация о проекте</p>
+      <a href="case.html">Ссылка на кейс</a>
+    </div>
+  </div>
 </main>
 
-<footer class="site-footer"><div class="footer-inner"><div>© 2025 Kris’s case lab</div></div></footer>
-
+<footer>
+  <p>© 2025 Kris’s case lab</p>
+</footer>
 </body>
 </html>
